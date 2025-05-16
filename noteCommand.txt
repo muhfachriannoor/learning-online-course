@@ -1,0 +1,70 @@
+PHP Version 8.3.3
+Laravel Version 11.31
+Composer Version 2.7.7
+Node JS Version 22.9.0
+Node Package Manager (NPM) Version 10.8.3
+
+// Menginstall Laravel via Composer //
+composer global require laravel/install
+
+// Membuat project laravel //
+laravel new namaProject
+
+// Menjalankan project Laravel //
+npm install && npm run build
+composer run dev
+
+// Menjalankan migration //
+php artisan migrate
+
+// Menjalankan migration dengan menghapus semua data //
+php artisan migrate:fresh
+
+// Menjalankan migration fresh dengan menjalankan file seeder //
+php artisan migrate:fresh --seed
+
+// Membuat Model //
+// Fungsi -m adalah sekalian membuat file migrationnya //
+php artisan make:model namaModel -m
+php artisan make:model Category -m
+
+// Menginstall filament pada project Laravel //
+composer require filament/filament
+php artisan filament:install --panels
+
+// Membuat data user untuk login //
+php artisan make:filament-user
+
+// Membuat resource filament CMS per feature //
+php artisan make:filament-resource namaResource --soft-deletes
+php artisan make:filament-resource Category --soft-deletes
+php artisan make:filament-resource CourseMentor --soft-deletes
+
+// Menginstall Laravel Spatie untuk permission //
+composer require spatie/laravel-permission
+php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+// Lalu Membersihkan cache //
+php artisan optimize:clear
+php artisan config:clear
+// Lalu menjalankan migrate untuk tabel permission //
+php artisan migrate
+
+// Menghubungkan project dengan folder storage //
+php artisan storage:link
+
+// Membuat file seeder //
+php artisan make:seeder namaSeeder
+php artisan make:seeder RolePermissionSeeder
+
+// Membuat Filament Relation Manager berdasarkan relasi dari tabel //
+php artisan make:filament-relation-manager namaResource namaMethodRelationDiModel namaKolomDatabase
+php artisan make:filament-relation-manager CourseResource courseSection name
+
+// Membuat file Observer (sebuah fitur untuk mengecek data baru ataupun sebelum dibuat) //
+// Jangan lupa untuk di tambahkan di file app\Providers\AppServiceProvider.php di bagian method boot //
+php artisan make:observer namaObserver
+php artisan make:observer TransactionObserver
+
+// Membuat file Controller //
+php artisan make:controller namaController
+php artisan make:controller FrontController
