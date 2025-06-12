@@ -34,4 +34,40 @@ class CourseService
             'firstContentId' => $firstContentId,
         ];
     }
+
+    public function getLearningData(Course $course, $contentSectionId, $sectionContentId)
+    {
+        $course->load(['courseSections.sectionContents']);
+
+        $currentSection = $course->courseSections->find($contentSectionId);
+        $currentContent = $currentSection ? $currentSection->sectionContents->find($sectionContentId) : null;
+
+        // Determine next content
+        $nextContent = null;
+        if($currentContent) {
+            $nextContent = $currentSection->sectionContents
+                ->where('id', '>', $currentContent->id)
+                ->sortBy('id')
+                ->first();
+        }
+
+        if(!$nextContent && $currentSection) {
+            $nextSection = $course->courseSections
+                ->where('id', '>', $currentSection->id)
+                ->sortBy('id')
+                ->first();
+
+            if($nextSection) {
+                $nextContent = $nextSection->sectionContents->sortBy('id')->first();
+            }
+        }
+
+        return [
+            'course' => $course,
+            'currentSection' => $currentSection,
+            'currentContent' => $currentContent,
+            'nextContent' => $nextContent,
+            'isFinished' => !$nextContent,
+        ];
+    }
 }
