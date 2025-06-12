@@ -9,6 +9,7 @@ use App\Models\Pricing;
 use App\Repositories\PricingRepositoryInterface;
 use App\Repositories\TransactionRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class PaymentService
 {
