@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Models\Transaction;
 use App\Observers\TransactionObserver;
+use App\Repositories\CourseRepository;
+use App\Repositories\CourseRepositoryInterface;
 use App\Repositories\PricingRepository;
 use App\Repositories\PricingRepositoryInterface;
 use App\Repositories\TransactionRepository;
