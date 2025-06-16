@@ -1,4 +1,5 @@
 @extends('front.layouts.app')
+@section('title', 'Obito Zone')
 @section('content')
     <x-nav-guest/>
     <main class="flex flex-1 items-center py-[70px]">
