@@ -57,7 +57,7 @@ class CourseController extends Controller
         return view('courses.learning_finished', compact('course'));
     }
 
-    public function search_course(Request $request)
+    public function search_courses(Request $request)
     {
         $request->validate([
             'search' => 'required|string',
@@ -66,7 +66,7 @@ class CourseController extends Controller
         $keyword = $request->search;
 
         // Delegate the search logic to the service
-        $course = $this->courseService->searchCourse($keyword);
+        $courses = $this->courseService->searchCourse($keyword);
 
         return view('courses.search', compact('courses', 'keyword'));
     }
