@@ -48,7 +48,7 @@
                                 <img src="{{ asset('assets/images/icons/note.svg') }}" alt="icon" class="size-5 shrink-0" />
                                 <p>Access Duration</p>
                             </div>
-                            <strong class="font-semibold">{{ $transaction->duration }} Months</strong>
+                            <strong class="font-semibold">{{ $transaction->pricing->duration }} Months</strong>
                         </div>
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-2">
@@ -101,8 +101,8 @@
                     <div class="card absolute -top-[47px] left-[30px] right-[30px] flex items-center p-4 gap-[14px] border border-obito-grey rounded-[20px] bg-white shadow-[0px_10px_30px_0px_#B8B8B840]">
                         <img src="{{ asset('assets/images/icons/cup-green-fill.svg') }}" alt="icon" class="size-[50px] shrink-0" />
                         <div>
-                            <h3 class="font-bold text-[18px] leading-[27px]">Pro Talent</h3>
-                            <p class="text-obito-text-secondary">3 months duration</p>
+                            <h3 class="font-bold text-[18px] leading-[27px]">{{ $transaction->pricing->name }}</h3>
+                            <p class="text-obito-text-secondary">{{ $transaction->pricing->duration }} months duration</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-2">
