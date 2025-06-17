@@ -24,10 +24,12 @@ class CourseController extends Controller
 
     public function details(Course $course)
     {
+        // eager loading
         $course->load([
             'category',
             'benefits',
-            'courseSections.sectionContents'
+            'courseSections.sectionContents',
+            'courseMentors.mentor'
         ]);
 
         return view('courses.details', compact('course'));
@@ -38,14 +40,14 @@ class CourseController extends Controller
         $studentName = $this->courseService->enrollUser($course);
         $firstSectionAndContent = $this->courseService->getFirstSectionAndContent($course);
 
-        return view('course.success_joined', array_merge(
-            compact('courses', 'studentName'), $firstSectionAndContent
+        return view('courses.success_joined', array_merge(
+            compact('course', 'studentName'), $firstSectionAndContent
         ));
     }
     
     public function learning(Course $course, $contentSectionId, $sectionContentId)
     {
-        $learnignData = $this->courseService->getLearningData($course, $contentSectionId, $sectionContentId);
+        $learningData = $this->courseService->getLearningData($course, $contentSectionId, $sectionContentId);
 
         return view('courses.learning', $learningData);
     }
